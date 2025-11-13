@@ -72,7 +72,7 @@ app.get('/api/produtos/:id', async (req, res) => {
 // ------------------ CREATE ------------------ //
 
 // Rota para criar um novo produto (endpoint: POST /api/produtos):
-app.post('/api/produtos/criar/', async (req, res) => {
+app.post('/api/produtos', async (req, res) => {
     const novoProduto = new Product({
         nome: req.body.nome,
         preco: req.body.preco,
@@ -92,8 +92,8 @@ app.post('/api/produtos/criar/', async (req, res) => {
 
 // ------------------ UPDATE ------------------ //
 
-// Rota para atualizar um produto por ID (endpoint: PUT /api/produtos/:id)
-app.put('/api/produtos/atualizar/:id', async (req, res) => {
+// Rota para atualizar um produto por ID (endpoint: PATCH /api/produtos/:id)
+app.patch('/api/produtos/:id', async (req, res) => {
     try {
         const produtoAtualizado = await Product.findByIdAndUpdate(
             req.params.id,
@@ -113,7 +113,7 @@ app.put('/api/produtos/atualizar/:id', async (req, res) => {
 // ------------------ DELETE ------------------ //
 
 // Rota para deletar um produto por ID (endpoint: DELETE api/produtos/:id)
-app.delete('/api/produtos/deletar/:id', async (req, res) => {
+app.delete('/api/produtos/:id', async (req, res) => {
     try {
         const produtoDeletado = await Product.findByIdAndDelete(req.params.id);
         if (!produtoDeletado) {
